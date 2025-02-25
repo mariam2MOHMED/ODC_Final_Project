@@ -5,8 +5,8 @@ import 'package:sqflite/sqflite.dart';
 class SQLHelper {
   static Future<Database> initDb() async {
     return sql.openDatabase(
-      'products.db', // Database name
-      version: 1, // Version number
+      'product1.db', // Database name
+      version: 2, // Version number
       onCreate: (Database database, int version) async {
         await createTable(database);
       },
@@ -21,14 +21,15 @@ class SQLHelper {
         description TEXT,
         image TEXT,
         quantity INTEGER NOT NULL,
-        price REAL NOT NULL
+        price REAL NOT NULL,
+        type TEXT NOT NULL
       )
     """);
     debugPrint("Table Created");
   }
 
   // Add a product
-  static Future<int> add(String productId, String name, String description, String imageUrl, int quantity, double price) async {
+  static Future<int> add(String productId, String name, String description, String imageUrl, int quantity, double price,String type) async {
     final db = await SQLHelper.initDb();
     final data = {
       'id': productId,
@@ -36,7 +37,8 @@ class SQLHelper {
       'description': description,
       'image': imageUrl,
       'quantity': quantity,
-      'price': price
+      'price': price,
+      'type':type
     };
     final id = await db.insert('products', data, conflictAlgorithm: ConflictAlgorithm.replace);
     debugPrint("Product Added");
@@ -78,4 +80,18 @@ class SQLHelper {
       debugPrint("Something went wrong: $err");
     }
   }
+  static Future<List<Map<String, dynamic>>> getByType(String type) async {  // 👈 تحديد النوع
+    final db = await SQLHelper.initDb();
+    return db.query('products', where: "type = ?", whereArgs: [type], orderBy: "id");
+  }
+  static Future<void> deleteCategory(String productId, String type) async {  // 👈 حذف بناءً على النوع
+    final db = await SQLHelper.initDb();
+    try {
+      await db.delete("products", where: "id = ? AND type = ?", whereArgs: [productId, type]);
+      debugPrint("Product Deleted from $type");
+    } catch (err) {
+      debugPrint("Something went wrong: $err");
+    }
+  }
+
 }

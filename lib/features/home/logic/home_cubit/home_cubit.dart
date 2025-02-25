@@ -6,10 +6,13 @@ import 'package:meta/meta.dart';
 import 'package:odcorange/core/network/remote/dio_helper.dart';
 import 'package:odcorange/core/network/remote/endpoints.dart';
 import 'package:odcorange/features/auth/data/models/user_model.dart';
+import 'package:odcorange/features/cart/data/models/product_cart_model.dart';
 import 'package:odcorange/features/home/data/models/product_model.dart';
 import 'package:odcorange/features/home/presentation/screens/modules/browse_screen.dart';
-import 'package:odcorange/features/home/presentation/screens/modules/cart_screen.dart';
+import 'package:odcorange/features/cart/presentation/screens/cart_screen.dart';
 import 'package:odcorange/features/home/presentation/screens/modules/wishlist.dart';
+import 'package:odcorange/features/wishlist/data/models/product_wish_model.dart';
+import 'package:odcorange/features/wishlist/presentation/screens/wishlist.dart';
 
 import '../../presentation/screens/modules/home_screen.dart';
 
@@ -20,6 +23,7 @@ class HomeCubit extends Cubit<HomeState> {
   List<ProductModel>products=[];
   UserModel? userModel;
   ProductModel? productModel;
+
   int index=0;
   List<Widget>screens=[
     HomeScreen(),
