@@ -7,6 +7,8 @@ class Endpoints{
   static const String signUpEndPoint = "/users";
   static const String productsEndpoint = "/products";
   static const String singleProduct= "/products/";
-  ///
-  static const String usersEndPoints= "/users/";
+  ///users
+  static const String categories= "/products/categories";
+  static const String usersEndPoints= "/users/3";
+  static const String addNewUser= "/users";
 }

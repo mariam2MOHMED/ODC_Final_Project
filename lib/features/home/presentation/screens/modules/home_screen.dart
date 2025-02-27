@@ -106,17 +106,17 @@ class HomeScreen extends StatelessWidget {
                                     Column(crossAxisAlignment:CrossAxisAlignment.start ,
                                       children: [
                                         SizedBox(height: 50.h,),
-                                        Text("New Bing\n Wireless\n Earphone",style: Styles.style28.copyWith(color: Colors.white),),
+                                        Text("New Bing\n Wireless\n Earphone",
+                                          style: Styles.style28.copyWith(color: Colors.white),),
                                         SizedBox(height: 10.h,),
                                         Row(
                                           children: [
                                             Text("See Offer ",style: Styles.style16.copyWith(color: Colors.white),),
-                                            ImageIcon(AssetImage("assets/images/halfarrow.png"),color: Colors.white,)
+                                            ImageIcon(AssetImage
+                                              ("assets/images/halfarrow.png"),
+                                              color: Colors.white,)
                                           ],
-                                        ),
-
-
-                                      ],
+                                        ),],
                                     ),
                                     SizedBox(width: 25.w,),
                                     // ImageIcon(AssetImage
@@ -220,6 +220,72 @@ class HomeScreen extends StatelessWidget {
                       ),
                       SizedBox(height: 10.h,),
                       Text("Categories",style: Styles.style18,),
+                      SizedBox(height: 10.h,),
+                      SizedBox(  height: 60.h,
+                        child: ListView.separated(
+                            scrollDirection: Axis.horizontal,
+                            itemBuilder: (context,index){
+                              return ConditionalBuilder(
+                                  condition: state is !HomeCategoriesLoading,
+                                  builder: (context){
+                                    if(context.read<HomeCubit>().cats[index]==0){
+                                      return Container(
+                                        decoration: BoxDecoration(
+                                            color: AppColors.primary,
+                                            borderRadius: BorderRadius.circular(30.r),
+                                            border: Border.all(
+                                                width: 1.w,color: AppColors.primary
+                                            )
+                                        ),
+                                        child: Padding(
+                                          padding:  EdgeInsets.symmetric(
+                                              horizontal: 8.w,vertical: 7.h
+                                          ),
+                                          child: Row(
+                                            children: [
+
+                                              CircleAvatar(
+                                                radius: 16,
+                                                backgroundColor: Colors.white,
+                                                child:  Icon(Icons.
+                                                grid_view_rounded,color: AppColors.primary,) ,
+                                              ),
+                                              Text(" All",
+                                                style: Styles.style14,),
+                                            ],
+                                          ),
+                                        ),
+                                      );
+                                    }else{
+                                      return
+                                        Container(
+                                        decoration: BoxDecoration(color: Colors.white,
+                                          borderRadius: BorderRadius.circular(30.r),
+                                          border: Border.all(
+                                            width: 1.w,color: AppColors.lightgrey
+                                          )
+                                        ),
+                                        child: Padding(
+                                          padding:  EdgeInsets.symmetric(
+                                            horizontal: 8.w,vertical: 7.h
+                                          ),
+                                          child: Text(context.read<HomeCubit>().cats[index],
+                                            style: Styles.style14,),
+                                        ),
+                                      );
+                                    }
+                                  },
+                                  fallback: (context)=>Center(
+                                    child: LoadingAnimationWidget.inkDrop
+                                      (color: AppColors.pink, size: 30.sp),
+                                  ));
+                              ;
+                            },
+                            separatorBuilder: (context,index){
+                              return SizedBox(width: 20.w,);
+                            },
+                            itemCount: context.read<HomeCubit>().cats.length),
+                      ),
                       SizedBox(height: 10.h,),
                       GridView.builder(
                         shrinkWrap: true,physics:   NeverScrollableScrollPhysics(),

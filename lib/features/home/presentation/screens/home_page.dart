@@ -8,7 +8,10 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<HomeCubit, HomeState>(
+    return BlocProvider(
+  create: (context) => HomeCubit()..getProducts()..
+  getCategories()..getUserData(),
+  child: BlocConsumer<HomeCubit, HomeState>(
   listener: (context, state) {
     // TODO: implement listener
   },
@@ -28,6 +31,7 @@ class HomePage extends StatelessWidget {
       ),
     );
   },
+),
 );
   }
 }

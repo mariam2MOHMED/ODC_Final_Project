@@ -20,9 +20,12 @@ class _LabelTxtInputState extends State<LabelTxtInput> {
   @override
   Widget build(BuildContext context) {
 
-    return Column(crossAxisAlignment: CrossAxisAlignment.start,
+    return
+      Column(crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-Text(widget.label,style: Styles.style12,),
+Text(widget.label,style: Styles.style12.copyWith(
+  color: Color(0xFF7C7D81)
+),),
         SizedBox(height: 12.h,),
         TextFormField(
           obscureText:Obsecure ,
@@ -43,7 +46,10 @@ IconButton(onPressed: (){
                   width: 1.w
                   ,)
             ) ,
-            hintText: widget.hint,hintStyle: Styles.style16,
+            hintText: widget.hint,hintStyle:
+          Styles.style16.copyWith(
+    color: Color(0xFF7C7D81)
+    ),
             border:OutlineInputBorder(
               borderSide: BorderSide(
                 color: AppColors.midgrey,width: 1.w

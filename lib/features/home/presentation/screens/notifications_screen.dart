@@ -13,7 +13,8 @@ class NotificationsScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
-        title:Container(
+        title:
+        Container(
           decoration: BoxDecoration(
             shape: BoxShape.circle,
             border: Border.all(

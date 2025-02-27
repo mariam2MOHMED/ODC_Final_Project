@@ -1,12 +1,15 @@
 import 'package:another_flutter_splash_screen/another_flutter_splash_screen.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import 'package:odcorange/core/db/cach_helper/cach_helper.dart';
+import 'package:odcorange/core/fcm/fcm.dart';
 import 'package:odcorange/features/home/logic/home_cubit/home_cubit.dart';
 import 'package:odcorange/features/intro/splash_screen.dart';
+import 'package:odcorange/firebase_options.dart';
 
 import 'core/db/local_db/local_db.dart';
 import 'core/network/remote/dio_helper.dart';
@@ -18,15 +21,17 @@ void main() async{
   await CacheHelper.init();
   await SQLHelper.initDb();
   DioHelper.init();
+
+
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+  Fcm.fcmInit();
   runApp(ScreenUtilInit(
     designSize: Size(375, 812),
     minTextAdapt: true,
     builder: (context, _) {
-      return BlocProvider(
-        create: (context) => HomeCubit()..
-        getProducts()..getUserData(),
-        child: StoreApp(),
-      );
+      return StoreApp();
     },
   ));
 }

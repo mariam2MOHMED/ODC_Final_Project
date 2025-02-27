@@ -21,6 +21,13 @@ final class HomeProductError extends HomeState {
 
   HomeProductError({required this.error});
 }
+final class HomeCategoriesLoading extends HomeState {}
+final class HomeCategoriesSucess extends HomeState {}
+final class HomeCategoriesError extends HomeState {
+  final String error;
+
+  HomeCategoriesError({required this.error});
+}
 final class HomeSingleProductLoading extends HomeState {}
 final class HomeSingleProductSucess extends HomeState {}
 final class HomeSingleProductError extends HomeState {

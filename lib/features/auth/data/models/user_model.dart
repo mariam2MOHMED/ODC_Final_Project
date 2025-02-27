@@ -8,7 +8,8 @@ class UserModel {
   Name? name;
   String? phone;
   int? v;
- UserModel({this.address, this.id, this.email, this.username, this.password, this.name, this.phone, this.v});
+
+  UserModel({this.address, this.id, this.email, this.username, this.password, this.name, this.phone, this.v});
 
   UserModel.fromJson(Map<String, dynamic> json) {
     address = json["address"] == null ? null : Address.fromJson(json["address"]);

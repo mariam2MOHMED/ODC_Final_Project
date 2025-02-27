@@ -10,6 +10,7 @@ import 'package:odcorange/features/cart/data/models/product_cart_model.dart';
 import 'package:odcorange/features/home/data/models/product_model.dart';
 import 'package:odcorange/features/home/presentation/screens/modules/browse_screen.dart';
 import 'package:odcorange/features/cart/presentation/screens/cart_screen.dart';
+import 'package:odcorange/features/home/presentation/screens/modules/profile_screen.dart';
 import 'package:odcorange/features/home/presentation/screens/modules/wishlist.dart';
 import 'package:odcorange/features/wishlist/data/models/product_wish_model.dart';
 import 'package:odcorange/features/wishlist/presentation/screens/wishlist.dart';
@@ -23,20 +24,42 @@ class HomeCubit extends Cubit<HomeState> {
   List<ProductModel>products=[];
   UserModel? userModel;
   ProductModel? productModel;
-
+  String? name;  String? email;
+List<String>cats=[
+  "All"
+];
   int index=0;
   List<Widget>screens=[
     HomeScreen(),
     BrowseScreen(),
     WishListScreen(),
-    CartScreen()
+    CartScreen(),
+    ProfileScreen()
   ];
+  //["electronics","jewelery","men's clothing","women's clothing"]
   List<BottomNavigationBarItem>items=[
     BottomNavigationBarItem(icon: ImageIcon(AssetImage("assets/images/home_icon.png"),),label: 'Home'),
     BottomNavigationBarItem(icon: Icon(Icons.search),label: 'Browse'),
     BottomNavigationBarItem(icon: Icon(Icons.favorite_border),label: 'WishList'),
     BottomNavigationBarItem(icon: Icon(Icons.shopping_bag_outlined),label: 'Cart'),
+    BottomNavigationBarItem(icon: Icon(Icons.person_outline_rounded),label: 'Cart'),
+
   ];
+  void getCategories(){
+    emit(HomeCategoriesLoading());
+    DioHelper.getData(url: Endpoints.categories).then((value) {
+   if(value.statusCode==200)
+     {
+cats=( value.data as List).map((e) =>cats[e]).toList();
+       emit(HomeCategoriesSucess());
+       print("cats ${cats[1]}");
+     }else{
+     emit(HomeCategoriesError(error:"unable to load categories"));
+   }
+    }).catchError((error){
+      emit(HomeCategoriesError(error:error.toString()));
+    });
+  }
  void getSingleProduct(int id){
     productModel=null;
     emit(HomeSingleProductLoading());
@@ -58,12 +81,16 @@ class HomeCubit extends Cubit<HomeState> {
   }
   List<ProductModel>searchs=[];
   void getUserData(){
+   // userModel = null;
     emit(HomeUserDataLoading());
-    DioHelper.getData(url: Endpoints.usersEndPoints).then((value) {
-      if(value.statusCode==200&& value.data!=null){
+    DioHelper.getData(url: Endpoints.usersEndPoints)
+        .then((value) {
+      if(value.statusCode==200&& userModel!=null){
         userModel=UserModel.fromJson(value.data);
         emit(HomeUserDataSucess());
-        print(userModel!.name!);
+
+   name= userModel!.name!.firstname;
+   email=userModel!.email!;
       }else{
         emit(HomeUserDataFailure(error: "User Data Failed"));
       }
@@ -95,4 +122,7 @@ DioHelper.getData(url: Endpoints.productsEndpoint).then((value) {
   emit(HomeProductError(error: error.toString()));
 });
   }
+}
+class CategoryModel{
+  String title;CategoryModel({required this.title});
 }
