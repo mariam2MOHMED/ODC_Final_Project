@@ -1,5 +1,9 @@
+
+
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -7,6 +11,7 @@ import 'package:odcorange/core/constants/App_Colors.dart';
 import 'package:odcorange/core/constants/styles.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:lottie/lottie.dart';
+import 'package:odcorange/features/home/presentation/widgets/add_filter_sheet.dart';
 import 'package:odcorange/features/home/presentation/widgets/custom_product.dart';
 
 import '../../../logic/home_cubit/home_cubit.dart';
@@ -52,7 +57,7 @@ class BrowseScreen extends StatelessWidget {
          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Lottie.asset(
-                "assets/lottie/Animation - 1739771583890.json",height: 200.h),
+                "assets/lottie/Animation - 1739771583890.json",height: 300.h),
          SizedBox(height: 20.h,),
             Text("No Items Found",style: Styles.style24.copyWith(
               color: AppColors.primary
@@ -76,8 +81,38 @@ class BrowseScreen extends StatelessWidget {
                       child: LoadingAnimationWidget.inkDrop(color: AppColors.primary,
                           size: 25.sp),
                     ));
-                  })
+                  }),
+              SizedBox(height: 100.h,),
+
+
+              Align(
+                alignment: AlignmentDirectional.bottomCenter,
+                child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                        backgroundColor: AppColors.primary,
+                        foregroundColor: Colors.white,
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(30.r)
+                        ),
+                        fixedSize: Size(
+                            MediaQuery.of(context).size.width*0.3,
+                            56.h)
+                    ),
+                    onPressed: (){
+                      showModalBottomSheet(context: context,
+                          builder: (context)=>FilterBottomSheet());
+                    },
+                    child: Center(child:
+                    Row(
+                      children: [
+                        Icon(Icons.filter_alt,color: Colors.white,)
+                        ,   Text(" Filter",
+                          style: Styles.style16white,),
+                      ],
+                    ))),
+              ),
             ],),
+
           ),
         );
       },

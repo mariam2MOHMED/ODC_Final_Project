@@ -39,82 +39,81 @@ class RegisterScreen extends StatelessWidget {
           }
         },
         builder: (context, state) {
+return   Scaffold(
+  resizeToAvoidBottomInset: false,
+  body: ConditionalBuilder(condition: state is !AuthRegisterLoading,
+    builder:(context)=> Padding(
+      padding:  EdgeInsets.symmetric(horizontal: 20.w),
+      child: Form(key: fromkey,
+        child: Column(crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            SizedBox(height: 60.h,),
+            Text("Create your new\n account.",style: Styles.style32,),
+            SizedBox(height: 24.h,),
+            LabelTxtInput(label: "User Name", hint: "User Name", controller: userNameController,
+                validator: (value){
+                  if(value!.isEmpty||value==null){
+                    return "UserName Must be not empty";
+                  }else{
+                    return null;
+                  }
+                }),
+            SizedBox(height: 16.h,),
+            LabelTxtInput(label: "Email", hint: "Email",
+                controller: emailController,
+                validator: (value){
+                  if(value!.isEmpty||value==null){
+                    return "Email Must be not empty";
+                  }else{
+                    return null;
+                  }
+                }),
+            SizedBox(height: 16.h,),
+            LabelTxtInput(
+                isPassword: true,
+                label: "Password", hint: "Password",
+                controller: passwordController,
+                validator: (value){
+                  if(value!.isEmpty||value==null){
+                    return "Password Must be not empty";
+                  }else{
+                    return null;
+                  }
+                }),
+            SizedBox(height: 24.h,),
+            CustomBtn(onPressed: (){
+              if(fromkey.currentState!.validate()){
+                context.read<AuthCubit>().register(
+                    emailController.text,
+                    userNameController.text,
 
-          return ConditionalBuilder(condition: state is !AuthRegisterLoading,
-              builder: (context)=>SafeArea(
-                child: Scaffold(
-                  resizeToAvoidBottomInset: false,
-                  body: Padding(
-                    padding:  EdgeInsets.symmetric(horizontal: 20.w),
-                    child: Form(key: fromkey,
-                      child: Column(crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          SizedBox(height: 60.h,),
-                          Text("Login to your\n account.",style: Styles.style32,),
-                          SizedBox(height: 24.h,),
-                          LabelTxtInput(label: "User Name", hint: "User Name", controller: userNameController,
-                              validator: (value){
-                                if(value!.isEmpty||value==null){
-                                  return "UserName Must be not empty";
-                                }else{
-                                  return null;
-                                }
-                              }),
-                          SizedBox(height: 16.h,),
-                          LabelTxtInput(label: "Email", hint: "Email",
-                              controller: emailController,
-                              validator: (value){
-                                if(value!.isEmpty||value==null){
-                                  return "Email Must be not empty";
-                                }else{
-                                  return null;
-                                }
-                              }),
-                          SizedBox(height: 16.h,),
-                          LabelTxtInput(
-                              isPassword: true,
-                              label: "Password", hint: "Password",
-                              controller: passwordController,
-                              validator: (value){
-                                if(value!.isEmpty||value==null){
-                                  return "Password Must be not empty";
-                                }else{
-                                  return null;
-                                }
-                              }),
-                          SizedBox(height: 24.h,),
-                          CustomBtn(onPressed: (){
-                            if(fromkey.currentState!.validate()){
-                              context.read<AuthCubit>().register(
-                                  emailController.text,
-                                  userNameController.text,
+                    passwordController.text);
 
-                                  passwordController.text);
+              }
+            }, txt: "Register"),
+            SizedBox(height: 20.h,),
+            Row(
+              children: [
+                Text("Already have an account.",
+                  style: Styles.style16grey,),
+                TextButton(onPressed: (){
+                  Navigator.push(context, MaterialPageRoute(builder: (context)=>
+                      LoginScreen()));
+                },
+                  child:   Text("Login",style: Styles.style16blue,),)
+              ],
+            )
+          ],
+        ),
+      ),
+    ),
+      fallback: (context)=>Center(child:
+      LoadingAnimationWidget.threeArchedCircle(color: AppColors.primary,
+          size: 40.sp))
+  ),
 
-                            }
-                          }, txt: "Register"),
-                          SizedBox(height: 20.h,),
-                          Row(
-                            children: [
-                              Text("Already have an account.",
-   style: Styles.style16grey,),
-                              TextButton(onPressed: (){
-                                Navigator.push(context, MaterialPageRoute(builder: (context)=>
-                                    LoginScreen()));
-                              },
-                                child:   Text("Login",style: Styles.style16blue,),)
-                            ],
-                          )
-                        ],
-                      ),
-                    ),
-                  ),
-
-                ),
-              ),
-              fallback: (context)=>Center(child:
-             LoadingAnimationWidget.threeArchedCircle(color: AppColors.primary,
-                 size: 40.sp)));
+);
+          
 
         },
       ),

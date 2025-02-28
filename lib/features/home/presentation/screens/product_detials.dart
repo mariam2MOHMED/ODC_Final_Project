@@ -11,6 +11,7 @@ import 'package:odcorange/core/db/local_db/local_db.dart';
 import 'package:odcorange/core/widets/custom_btn.dart';
 import 'package:odcorange/features/home/data/models/ColorModel.dart';
 import 'package:odcorange/features/home/logic/home_cubit/home_cubit.dart';
+import 'package:odcorange/features/cart/presentation/screens/order_screen.dart';
 import 'package:readmore/readmore.dart';
 
 import '../widgets/color_widget.dart';
@@ -176,7 +177,11 @@ class _ProductDetialsState extends State<ProductDetials> {
                             ),
                             SizedBox(width: 24.0,),
                             Expanded(child: CustomBtn(
-                                onPressed: () {}, txt: "Checkout"))
+                                onPressed: () {
+                                  Navigator.push(context, MaterialPageRoute(builder:
+                                      (context)=>
+                               CartOrderScreen()));
+                                }, txt: "Checkout"))
                           ],
                         )
                       ],

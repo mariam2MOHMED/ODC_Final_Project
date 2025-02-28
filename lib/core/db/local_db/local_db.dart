@@ -5,8 +5,8 @@ import 'package:sqflite/sqflite.dart';
 class SQLHelper {
   static Future<Database> initDb() async {
     return sql.openDatabase(
-      'product1.db', // Database name
-      version: 2, // Version number
+      'product3.db', // Database name
+      version: 3, // Version number
       onCreate: (Database database, int version) async {
         await createTable(database);
       },
@@ -80,11 +80,11 @@ class SQLHelper {
       debugPrint("Something went wrong: $err");
     }
   }
-  static Future<List<Map<String, dynamic>>> getByType(String type) async {  // 👈 تحديد النوع
+  static Future<List<Map<String, dynamic>>> getByType(String type) async {
     final db = await SQLHelper.initDb();
     return db.query('products', where: "type = ?", whereArgs: [type], orderBy: "id");
   }
-  static Future<void> deleteCategory(String productId, String type) async {  // 👈 حذف بناءً على النوع
+  static Future<void> deleteCategory(String productId, String type) async {
     final db = await SQLHelper.initDb();
     try {
       await db.delete("products", where: "id = ? AND type = ?", whereArgs: [productId, type]);

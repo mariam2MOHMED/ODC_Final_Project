@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:odcorange/core/constants/styles.dart';
 import 'package:odcorange/features/cart/presentation/screens/no_carts.dart';
@@ -36,12 +37,18 @@ class WishListScreen extends StatelessWidget {
                     shrinkWrap: true,physics: NeverScrollableScrollPhysics(),
                       itemCount: context.read<WishListCubit>()
                           .wishlist.length,
-                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2,mainAxisSpacing: 20,crossAxisSpacing: 20,),
+                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount
+                        (crossAxisCount: 2,mainAxisSpacing: 20,crossAxisSpacing: 20,),
                       itemBuilder: (context,index){
                         return CustomWishWidget(
                           productModel:context.read<WishListCubit>().
                           wishlist[index]
 
+                        ).animate().fadeIn(
+                          duration:
+                            Duration(
+                              seconds: 1
+                            )
                         );
                       }),
                   SizedBox(height: 20.0,),

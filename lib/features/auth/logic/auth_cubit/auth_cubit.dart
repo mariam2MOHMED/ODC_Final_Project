@@ -14,6 +14,7 @@ part 'auth_state.dart';
 class AuthCubit extends Cubit<AuthState> {
   AuthCubit() : super(AuthInitial());
   UserModel? userModel;
+  String ?name;
   void login(String userName, String password) {
 
     Map<String, String> data = {'username': userName,
@@ -23,11 +24,13 @@ class AuthCubit extends Cubit<AuthState> {
         url: Endpoints.loginEndPoint, data: data)
         .then((value) {
       if (value.statusCode == 200) {
-        userModel=UserModel.fromJson(value.data);
-        CacheHelper.saveData(key: "token", value: value.data["token"]);
-        emit(AuthLoginSuccess());
-       userModel!.name!.firstname!=userName;
-       userModel!.password=password;
+       userModel=UserModel.fromJson(value.data);
+       CacheHelper.saveData(key: "token", value:
+       value.data["token"]);
+       name=userName;
+  emit(AuthLoginSuccess());
+
+
       } else{
         emit(AuthLoginFailure("Login failed , please try again"));
       }
@@ -39,7 +42,7 @@ class AuthCubit extends Cubit<AuthState> {
 
   void register(String email,String userName, String password)
   {
-    emit(AuthRegisterLoading());
+ emit(AuthRegisterLoading());
     Map<String, String> data =
     {"username":userName, "password":password,
       "email":email};
@@ -48,8 +51,8 @@ class AuthCubit extends Cubit<AuthState> {
       if (value.statusCode == 200) {
         userModel=UserModel.fromJson(value.data);
         emit(AuthRegisterSuccess());
-        userModel!.name!.firstname!=userName;
-        userModel!.password=password;
+        // userModel!.name!.firstname!=userName;
+        // userModel!.password=password;
       } else{
         emit(AuthRegisterFailure(message:"Register failed , please try again" ));
       }

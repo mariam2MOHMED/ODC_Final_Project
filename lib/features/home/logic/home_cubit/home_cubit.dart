@@ -25,7 +25,7 @@ class HomeCubit extends Cubit<HomeState> {
   UserModel? userModel;
   ProductModel? productModel;
   String? name;  String? email;
-List<String>cats=[
+List<dynamic>cats=[
   "All"
 ];
   int index=0;
@@ -50,13 +50,16 @@ List<String>cats=[
     DioHelper.getData(url: Endpoints.categories).then((value) {
    if(value.statusCode==200)
      {
-cats=( value.data as List).map((e) =>cats[e]).toList();
+cats.addAll(value.data);
+
+print("---------------------------------------------------------------------------------------------------------------------------------cats are ${value.data}");
        emit(HomeCategoriesSucess());
        print("cats ${cats[1]}");
      }else{
      emit(HomeCategoriesError(error:"unable to load categories"));
    }
     }).catchError((error){
+      print("error category is ${error.toString()}");
       emit(HomeCategoriesError(error:error.toString()));
     });
   }
