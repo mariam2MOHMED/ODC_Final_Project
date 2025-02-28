@@ -36,9 +36,15 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
             Expanded(
               child: PageView.builder(
                 onPageChanged: (index){
-                  if(currindex==OnBoardingModel.boards.length){
-                 Navigator.push(context, MaterialPageRoute(builder: (context)=>LoginScreen()));
+                  currindex=index;
+
+                  if(index==OnBoardingModel.boards.length){
+                 Navigator.push(context,
+                     MaterialPageRoute(builder: (context)=>LoginScreen()));
                   }
+                  setState(() {
+
+                  });
                 },
                 controller: pageController,
                 itemBuilder: (context,index){

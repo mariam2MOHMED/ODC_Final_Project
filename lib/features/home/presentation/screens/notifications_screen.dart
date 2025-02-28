@@ -13,20 +13,20 @@ class NotificationsScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
-        title:
-        Container(
-          decoration: BoxDecoration(
-            shape: BoxShape.circle,
-            border: Border.all(
-              color: AppColors.midgrey,
-                width: 1.w
-            )
-          ),
-    child: Padding(
-      padding: const EdgeInsets.all(14.0),
-      child: Icon(Icons.arrow_back_sharp,color: AppColors.black,),
-    ),
-        ),
+    //     title:
+    //     Container(
+    //       decoration: BoxDecoration(
+    //         shape: BoxShape.circle,
+    //         border: Border.all(
+    //           color: AppColors.midgrey,
+    //             width: 1.w
+    //         )
+    //       ),
+    // child: Padding(
+    //   padding: const EdgeInsets.all(14.0),
+    //   child: Icon(Icons.arrow_back_sharp,color: AppColors.black,),
+    // ),
+    //     ),
       ),
       body: Padding(
         padding: const EdgeInsets.all(20.0),

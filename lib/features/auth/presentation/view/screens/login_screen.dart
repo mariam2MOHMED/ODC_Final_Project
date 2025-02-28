@@ -33,15 +33,16 @@ class LoginScreen extends StatelessWidget {
           body: BlocConsumer<AuthCubit, AuthState>(
             listener: (context, state) {
           if (state is AuthLoginSuccess) {
-                Navigator.pop(context);
+
                 ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                   content: Text("Success Login"),
                 ));
-                Navigator.push(context, MaterialPageRoute(builder: (context)=>
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context)=>
                     HomePage()));
               }
             if (state is AuthLoginFailure) {
-                Navigator.pop(context);
+               // Navigator.pop(context);
                 ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                   content: Text(state.message),
                 ));

@@ -55,28 +55,35 @@ var phonecontroller=TextEditingController();
             children: [
               Align(alignment: AlignmentDirectional.center,
                 child: Stack(
-                  fit: StackFit.passthrough,
+                
                   clipBehavior: Clip.none,
                   alignment: Alignment.bottomCenter,
                   children: [
                     CircleAvatar(
-                      radius: 40.r,
+                      radius: 50.r,
                       backgroundImage:
                       AssetImage(
                           "assets/images/person.png"),
                     ),
-                    Container( clipBehavior: Clip.antiAliasWithSaveLayer,
-        decoration: BoxDecoration(
-          color: Colors.black.withOpacity(0.3),
-        ),
+                    Positioned(//bottom: -10,
+                      child: ClipRRect(clipBehavior: Clip.antiAliasWithSaveLayer,
+                        borderRadius: BorderRadius.only(
+                          bottomRight: Radius.circular(18.r)
+,bottomLeft: Radius.circular(18.r)                        ),
+                        child: Container( clipBehavior: Clip.antiAliasWithSaveLayer,
+                                decoration: BoxDecoration(
+                                  color: Colors.black.withOpacity(0.5),
+                                ),
 
-                      child: Padding(
-                        padding:  EdgeInsets.symmetric(vertical: 5,
-                        horizontal: 14
+                          child: Padding(
+                            padding:  EdgeInsets.symmetric(
+                                vertical: 2,
+                                horizontal: 20.0),
+                            child: Text("Edit",style: TextStyle(
+                              color: Colors.white
+                            ),),
+                          ),
                         ),
-                        child: Text("Edit",style: TextStyle(
-                          color: Colors.white
-                        ),),
                       ),
                     )
                   ],
@@ -96,9 +103,9 @@ var phonecontroller=TextEditingController();
               SizedBox(height: 10.h,),
               Column(crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text("Date of birth",style: Styles.style12,),
-                  SizedBox(height: 12.h,),
-                  TextFormField(
+Text("Date of birth",style: Styles.style12,),
+ SizedBox(height: 12.h,),
+  TextFormField(
 
                    // controller: widget.controller,
                     decoration: InputDecoration(

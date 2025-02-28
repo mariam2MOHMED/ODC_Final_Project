@@ -12,7 +12,8 @@ class ProductCartModel {
         this.price,
         this.description,
         this.image,
-        this.quantity});
+        this.quantity=1
+     });
 
   ProductCartModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];

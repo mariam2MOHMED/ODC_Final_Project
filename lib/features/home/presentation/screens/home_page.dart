@@ -10,7 +10,7 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
   create: (context) => HomeCubit()..getProducts()..
-  getCategories()..getUserData(),
+  getUserData()..getCategories(),
   child: BlocConsumer<HomeCubit, HomeState>(
   listener: (context, state) {
     // TODO: implement listener

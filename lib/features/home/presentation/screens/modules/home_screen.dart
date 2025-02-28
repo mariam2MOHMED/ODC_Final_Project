@@ -221,20 +221,22 @@ class HomeScreen extends StatelessWidget {
                       SizedBox(height: 10.h,),
                       Text("Categories",style: Styles.style18,),
                       SizedBox(height: 10.h,),
-                      SizedBox(  height: 60.h,
+                      SizedBox(  height: 50.h,
                         child: ListView.separated(
                             scrollDirection: Axis.horizontal,
                             itemBuilder: (context,index){
                               return ConditionalBuilder(
                                   condition: state is !HomeCategoriesLoading,
                                   builder: (context){
-                                    if(context.read<HomeCubit>().cats[index]==0){
+                                    if(context.read<HomeCubit>().cats[index]=="All"){
                                       return Container(
                                         decoration: BoxDecoration(
                                             color: AppColors.primary,
-                                            borderRadius: BorderRadius.circular(30.r),
+                                            borderRadius:
+                                            BorderRadius.circular(30.r),
                                             border: Border.all(
-                                                width: 1.w,color: AppColors.primary
+                                                width: 1.w,
+                                                color: AppColors.primary
                                             )
                                         ),
                                         child: Padding(
@@ -245,13 +247,17 @@ class HomeScreen extends StatelessWidget {
                                             children: [
 
                                               CircleAvatar(
-                                                radius: 16,
+                                                radius: 17.r,
                                                 backgroundColor: Colors.white,
                                                 child:  Icon(Icons.
-                                                grid_view_rounded,color: AppColors.primary,) ,
+                                                grid_view_rounded,
+                                                  color: AppColors.primary,size: 15.sp,) ,
                                               ),
-                                              Text(" All",
-                                                style: Styles.style14,),
+                                              SizedBox(width: 4.w,),
+                                              Text(context.read<HomeCubit>().cats[0],
+                                                style: Styles.style14.copyWith(
+                                                  color: Colors.white
+                                                ),),
                                             ],
                                           ),
                                         ),
@@ -267,10 +273,15 @@ class HomeScreen extends StatelessWidget {
                                         ),
                                         child: Padding(
                                           padding:  EdgeInsets.symmetric(
-                                            horizontal: 8.w,vertical: 7.h
+                                            horizontal: 10.w,vertical: 14.h
                                           ),
-                                          child: Text(context.read<HomeCubit>().cats[index],
-                                            style: Styles.style14,),
+                                          child: Center(
+                                            child: Text(context.read<HomeCubit>().cats[index],
+                                              style: Styles.style14.copyWith(
+                                                fontWeight: FontWeight.w500,
+                                                  color: Colors.black
+                                              ),),
+                                          ),
                                         ),
                                       );
                                     }

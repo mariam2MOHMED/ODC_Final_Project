@@ -8,7 +8,10 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:odcorange/core/db/cach_helper/cach_helper.dart';
 import 'package:odcorange/core/fcm/fcm.dart';
 import 'package:odcorange/features/home/logic/home_cubit/home_cubit.dart';
+import 'package:odcorange/features/cart/presentation/screens/order_screen.dart';
+import 'package:odcorange/features/home/presentation/screens/privacy_policy_screen.dart';
 import 'package:odcorange/features/intro/splash_screen.dart';
+import 'package:odcorange/features/payment/presentation/view/screen/add_new_card.dart';
 import 'package:odcorange/firebase_options.dart';
 
 import 'core/db/local_db/local_db.dart';
@@ -43,8 +46,7 @@ class StoreApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
         debugShowCheckedModeBanner: false,
-        home:SplashScreen()
-
+      home: SplashScreen(),
     );
   }
 }

@@ -1,5 +1,6 @@
 import 'package:another_flutter_splash_screen/another_flutter_splash_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:odcorange/core/constants/App_Colors.dart';
 import 'package:odcorange/core/constants/styles.dart';
@@ -16,7 +17,13 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
-  var token;
+  late final String? token;bool isLast=false;
+  @override
+  void initState() {
+    // TODO: implement initState
+    token=CacheHelper.getData(key: "token");
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     return FlutterSplashScreen.fadeIn(
@@ -24,7 +31,10 @@ class _SplashScreenState extends State<SplashScreen> {
           seconds: 3),
       backgroundColor: Colors.white,
       onInit: () {
-        token=CacheHelper.getData(key: "token");
+
+
+
+        print("6666666666666666666my token is ${token}");
         debugPrint("On Init");
       },
       onEnd: () {
@@ -51,15 +61,20 @@ class _SplashScreenState extends State<SplashScreen> {
                   color: Colors.white, size: 40.sp,),
               ),
               SizedBox(height: 20.h,),
-              Text("Zalada", style: Styles.style28,)
+              Text("Zalada", style: Styles.style28,).animate().fadeIn(
+                duration: Duration(
+                  seconds: 1
+                )
+              )
             ],
           ),
         ),
       ),
 
       onAnimationEnd: () => debugPrint("On Fade In End"),
-      nextScreen:token!=null?HomePage()
-          :OnBoardingScreen(),
+      nextScreen:
+      token!=null?HomePage() :
+      OnBoardingScreen(),
     );
   }
 }
