@@ -48,7 +48,8 @@ class NotificationsScreen extends StatelessWidget {
               notificationModel: NotificationModel(
                   iconData: Icon(Icons.apple,size: 32.sp,
                     color: AppColors.black,),
-                  title: "New Apple Promotion", subtitle: "Special promotion to all apple devices"
+                  title: "New Apple Promotion",
+                  subtitle: "Special promotion to all apple"
               ),
             )
             , Divider(

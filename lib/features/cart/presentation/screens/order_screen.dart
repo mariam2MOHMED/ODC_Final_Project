@@ -224,17 +224,22 @@ class CartOrderScreen extends StatelessWidget {
                                 color: AppColors.lightgrey,
                                 height: 12,),
                               SizedBox(height: 5.0,),
-                              Column(crossAxisAlignment: CrossAxisAlignment.start,
+                              Row(
                                 children: [
-                                  Text("Regular (\$8)",style: Styles.style14.copyWith(
-                                      color: Colors.black
-                                  ),),
-                                  SizedBox(height: 5.h,),
-                                  Text("Estimate time 01 - 03 November",
-                                    textAlign: TextAlign.start,style: Styles.style14,),
+                                  Column(crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                      Text("Regular (\$8)",style: Styles.style14.copyWith(
+                                          color: Colors.black
+                                      ),),
+                                      SizedBox(height: 5.h,),
+                                      Text("Estimate time 01 - 03 November",
+                                        textAlign: TextAlign.start,style: Styles.style14,),
 
+                                    ],
+                                  ),
                                 ],
-                              ),
+                              )
+
                             ],
                           ),
 
@@ -277,7 +282,7 @@ class CartOrderScreen extends StatelessWidget {
                               copyWith(
                                   color: Color(0xff7C7D82)
                               ),),
-                              Text("\$ ${context.read<CartCubit>().totalPrice}",style: Styles.style20.copyWith(
+                              Text("\$ ${context.read<CartCubit>().totalPrice.toInt()}",style: Styles.style20.copyWith(
                                   fontWeight: FontWeight.bold,color: Colors.black
                               ),)
                             ],
@@ -298,7 +303,7 @@ class CartOrderScreen extends StatelessWidget {
                           Text("Payment Method",style: Styles.style18,),
                           SizedBox(height: 16.h,),
                           Container(
-                            margin: EdgeInsets.symmetric(horizontal: 20.0,vertical: 10),
+                          //  margin: EdgeInsets.symmetric(horizontal: 20.0,vertical: 10),
                             padding: EdgeInsets.all(16.0),
                             decoration: BoxDecoration(
                                 border: Border.all(

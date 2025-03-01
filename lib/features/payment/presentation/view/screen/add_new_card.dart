@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_credit_card/flutter_credit_card.dart';
+import 'package:flutter_paypal_payment/flutter_paypal_payment.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:odcorange/core/constants/App_Colors.dart';
 import 'package:odcorange/core/constants/styles.dart';
 import 'package:odcorange/core/widets/custom_btn.dart';
+import 'package:odcorange/features/payment/data/models/amount_model.dart';
+import 'package:odcorange/features/payment/data/models/item_model.dart';
 
 class AddNewCard extends StatefulWidget {
    AddNewCard({super.key});
@@ -159,8 +162,52 @@ cvvValidationMessage: " cvv must be not empty",
               bottom: 30.0
             ),
             child: CustomBtn(onPressed: (){
+              var amount=Amount(total: "100",
+                  currency: "USD",
+                  details: Details(
+                    shippingDiscount: 0,
+                    shipping: "0",subtotal: "100"
+                  ));
+              List<Items>orders=[
+                Items(
+                  currency: "USD",name:"Apple" ,price:"4" ,quantity: 10
+                ),
+                Items(
+                    currency: "USD",name:"Apple" ,price:"5" ,quantity: 12
+                )
+              ];
+              var itemsList=ItemModel(items: orders);
               if(formKey.currentState!.validate()){
-
+                Navigator.of(context).push(MaterialPageRoute(
+                  builder: (BuildContext context) =>
+                      PaypalCheckoutView(
+                    sandboxMode: true,
+                    clientId: "AbvhADbYLdhgtuja2tJcTAIBUbr8BHDGi-U8vJIZB5DPgaukbNTEy6FG1Cd500XUToAFPsFjc1t2cahG",
+                    secretKey: "EKcylo9uSsLRaNd6V3uYxJGyVlGhLy8hOxftNWdlJEK1dGJzAQNrz9TqgmzkjUnr4_9Ox6sv3f1rCvCj",
+                    transactions:  [
+                      {
+                        "amount": amount.toJson(),
+                        "description": "The payment transaction description.",
+                        // "payment_options": {
+                        //   "allowed_payment_method":
+                        //       "INSTANT_FUNDING_SOURCE"
+                        // },
+                        "item_list":itemsList.toJson()
+                      }
+                    ],
+                    note: "Contact us for any questions on your order.",
+                    onSuccess: (Map params) async {
+                      print("onSuccess: $params");
+                    },
+                    onError: (error) {
+                      print("onError: $error");
+                      Navigator.pop(context);
+                    },
+                    onCancel: () {
+                      print('cancelled:');
+                    },
+                  ),
+                ));
               }
 
             }, txt: "Add Payment"),

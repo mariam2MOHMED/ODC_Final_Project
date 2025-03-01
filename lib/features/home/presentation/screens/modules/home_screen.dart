@@ -299,9 +299,11 @@ class HomeScreen extends StatelessWidget {
                       ),
                       SizedBox(height: 10.h,),
                       GridView.builder(
+
                         shrinkWrap: true,physics:   NeverScrollableScrollPhysics(),
                         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                             crossAxisCount: 2,mainAxisSpacing: 20,
+
                             crossAxisSpacing: 20),
                           itemBuilder: (context,index){
                             return ConditionalBuilder(condition: state is !HomeProductLoading,
@@ -316,7 +318,9 @@ class HomeScreen extends StatelessWidget {
                                       (color: AppColors.pink, size: 30.sp),
                                   ),
                                 ));
-                          },itemCount:
+                          },
+
+                        itemCount:
                       context.read<HomeCubit>().products.length,)
                     ],
                   ),

@@ -49,7 +49,7 @@ var phonecontroller=TextEditingController();
         ),
       ),
       body: Padding(
-        padding:  EdgeInsets.symmetric(horizontal: 18.w),
+        padding:  EdgeInsets.symmetric(horizontal: 15.w),
         child: Form(key: formkey,
           child: Column(crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -154,8 +154,10 @@ Text("Date of birth",style: Styles.style12,),
               SizedBox(height: 5.h,),
               Row(
                 children: [
-                  Expanded(flex: 1,
+                  Expanded(
                     child: CountryPickerDropdown(
+                      isExpanded:true,
+                      iconSize: 12.sp,
                       initialValue: 'AR',
                       itemBuilder: _buildDropdownItem,
                       itemFilter: (c) => ['AR', 'EG', 'GB', 'CN'].contains(c.isoCode),

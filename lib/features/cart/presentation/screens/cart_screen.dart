@@ -42,7 +42,10 @@ class CartScreen extends StatelessWidget {
                 child: GridView.builder(
                     itemCount: context.read<CartCubit>()
                         .carts.length,
-                    gridDelegate:SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2,mainAxisSpacing: 20,crossAxisSpacing: 20,),
+
+                    gridDelegate:SliverGridDelegateWithFixedCrossAxisCount(
+
+                      crossAxisCount: 2,mainAxisSpacing: 20,crossAxisSpacing: 20,),
                     itemBuilder: (context,index){
                       return Container(
                         child: CustomCart(
