@@ -20,7 +20,7 @@ BuildContext c;
         Navigator.push(context, MaterialPageRoute(builder: (context1)=>
             BlocProvider.value(
               value: BlocProvider.of<HomeCubit>(context)
-                ..getSingleProduct(productModel.id!),
+                ..getSingleProduct(productModel.id!)..getRelatedProducts(productModel!.category!),
               child: ProductDetials(),
             )));
 

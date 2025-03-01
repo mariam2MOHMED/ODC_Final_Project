@@ -12,6 +12,7 @@ import 'package:odcorange/core/widets/custom_btn.dart';
 import 'package:odcorange/features/home/data/models/ColorModel.dart';
 import 'package:odcorange/features/home/logic/home_cubit/home_cubit.dart';
 import 'package:odcorange/features/cart/presentation/screens/order_screen.dart';
+import 'package:odcorange/features/home/presentation/widgets/custom_product.dart';
 import 'package:readmore/readmore.dart';
 
 import '../widgets/color_widget.dart';
@@ -62,7 +63,7 @@ class _ProductDetialsState extends State<ProductDetials> {
     }catch(e){
     print("the error at wishlist is ${e}");
     }
-    isFav=!isFav;
+    isFav=true;
     setState(() {
 
     });
@@ -72,7 +73,7 @@ class _ProductDetialsState extends State<ProductDetials> {
                     color:isFav?AppColors.red: AppColors.black,),
                 ),
               ),
-            )
+            ),SizedBox(width: 14.w,)
           ],
         ),
         body:ConditionalBuilder(condition: context.read<HomeCubit>().
@@ -149,6 +150,40 @@ class _ProductDetialsState extends State<ProductDetials> {
                         ),
                         ),
                         SizedBox(height: 12.h,),
+
+                        Row(
+                          children: [
+                            Text("Related Products",style: Styles.style18,),
+
+
+                          ],
+                        ),
+                        SizedBox(height: 16.h,),
+                        SizedBox(  height: 190.h,
+                          child: ListView.separated(
+                              scrollDirection: Axis.horizontal,
+                              itemBuilder: (context,index){
+                                return ConditionalBuilder(condition: state is !HomeRelatedProductLoading,
+                                    builder: (context)=>CustomProduct(
+                                      c: context,
+                                      productModel: context.read<HomeCubit>().
+                                      relatedProducts[index],
+                                    ),
+                                    fallback: (context)=>Center(
+                                      child: Center(
+                                        child: LoadingAnimationWidget.inkDrop
+                                          (color: AppColors.pink, size: 30.sp),
+                                      ),
+                                    ));
+                                ;
+                              },
+                              separatorBuilder: (context,index){
+                                return SizedBox(width: 20.w,);
+                              },
+                              itemCount: context.read<HomeCubit>().relatedProducts.
+                              length),
+                        ),
+                        SizedBox(height: 16.h,),
                         Row(
                           children: [
                             Container(
@@ -169,14 +204,14 @@ class _ProductDetialsState extends State<ProductDetials> {
                                       add(context.read<HomeCubit>().productModel!.id!.toString()??"",
                                           context.read<HomeCubit>().productModel!.title!??"",
                                           context.read<HomeCubit>().productModel!.description!??"",
-                                          context.read<HomeCubit>().productModel!.image!??"", 5,
+                                          context.read<HomeCubit>().productModel!.image!??"",1 ,
                                           context.read<HomeCubit>().productModel!.price!.toDouble(),
-                                  "cart"    );
+                                          "cart"    );
                                     }catch(e){
                                       print("the error at cart is ${e}");
                                     }
                                   },
-                                  child: Icon(Icons.add_shopping_cart,
+                                  child: Icon(Icons.card_travel,
                                     size: 25.sp,
                                     color: AppColors.black,),
                                 ),
@@ -187,10 +222,11 @@ class _ProductDetialsState extends State<ProductDetials> {
                                 onPressed: () {
                                   Navigator.push(context, MaterialPageRoute(builder:
                                       (context)=>
-                               CartOrderScreen()));
+                                      CartOrderScreen()));
                                 }, txt: "Checkout"))
                           ],
-                        )
+                        ),
+
                       ],
                     ),
                   ),

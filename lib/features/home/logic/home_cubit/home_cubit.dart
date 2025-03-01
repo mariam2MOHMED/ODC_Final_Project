@@ -37,6 +37,28 @@ List<dynamic>cats=[
     ProfileScreen()
   ];
   //["electronics","jewelery","men's clothing","women's clothing"]
+  List<ProductModel>relatedProducts=[];
+  Future<void> getRelatedProducts(String category) async {
+    emit(HomeRelatedProductLoading());
+    DioHelper.getData(url: Endpoints.productsEndpoint).then((value) {
+      if (value.statusCode == 200) {
+        relatedProducts = (value.data as List)
+            .map((e) => ProductModel.fromJson(e))
+            .where((product) => product.category == category)
+            .toList();
+        if (relatedProducts.isNotEmpty) {
+          emit(HomeRelatedProductSucess());
+        } else {
+          emit(HomeRelatedProductError(error: "No related products found"));
+        }
+      } else {
+        emit(HomeRelatedProductError(error: "Failed to load related products"));
+      }
+    }).catchError((error) {
+      emit(HomeRelatedProductError(error: error.toString()));
+    });
+  }
+
   List<BottomNavigationBarItem>items=[
     BottomNavigationBarItem(icon: ImageIcon(AssetImage("assets/images/home_icon.png"),),label: 'Home'),
     BottomNavigationBarItem(icon: Icon(Icons.search),label: 'Browse'),
