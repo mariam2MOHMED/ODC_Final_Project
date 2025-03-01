@@ -65,52 +65,58 @@ class BrowseScreen extends StatelessWidget {
             fadeIn(duration: Duration(seconds: 1))
           
           ],
-        )):    GridView.builder(
-                  shrinkWrap: true,
-                  physics: NeverScrollableScrollPhysics(),
-                  itemCount: context.read<HomeCubit>().searchs.length,
-                  gridDelegate:
-              SliverGridDelegateWithFixedCrossAxisCount(
-                childAspectRatio: 13/16,
-                  crossAxisCount: 2,mainAxisSpacing: 20,crossAxisSpacing: 20),
-                  itemBuilder: (context,index){
-                return ConditionalBuilder(condition: state is !HomeProductLoading,
-                    builder: (context)=>CustomProduct(
-                        c: context,
-                        productModel: context.read<HomeCubit>().searchs[index]), fallback: (context)=>Center(
-                      child: LoadingAnimationWidget.inkDrop(color: AppColors.primary,
-                          size: 25.sp),
-                    ));
-                  }),
-              SizedBox(height: 150.h,),
+        )):  Stack(
+          alignment: Alignment.bottomCenter,
+          children: [
+            GridView.builder(
+                shrinkWrap: true,
+                physics: NeverScrollableScrollPhysics(),
+                itemCount: context.read<HomeCubit>().searchs.length,
+                gridDelegate:
+                SliverGridDelegateWithFixedCrossAxisCount(
+                    childAspectRatio: 13/16,
+                    crossAxisCount: 2,mainAxisSpacing: 20,crossAxisSpacing: 20),
+                itemBuilder: (context,index){
+                  return ConditionalBuilder(condition: state is !HomeProductLoading,
+                      builder: (context)=>CustomProduct(
+                          c: context,
+                          productModel: context.read<HomeCubit>().searchs[index]), fallback: (context)=>Center(
+                        child: LoadingAnimationWidget.inkDrop(color: AppColors.primary,
+                            size: 25.sp),
+                      ));
+                }),
 
 
-              Align(
-                alignment: AlignmentDirectional.bottomCenter,
-                child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                        backgroundColor: AppColors.primary,
-                        foregroundColor: Colors.white,
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(30.r)
-                        ),
-                        fixedSize: Size(
-                            MediaQuery.of(context).size.width*0.3,
-                            56.h)
-                    ),
-                    onPressed: (){
-                      showModalBottomSheet(context: context,
-                          builder: (context)=>FilterBottomSheet());
-                    },
-                    child: Center(child:
-                    Row(
-                      children: [
-                        Icon(Icons.filter_alt,color: Colors.white,)
-                        ,   Text(" Filter",
-                          style: Styles.style16white,),
-                      ],
-                    ))),
-              ),
+
+            Align(
+              alignment: AlignmentDirectional.bottomCenter,
+              child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                      backgroundColor: AppColors.primary,
+                      foregroundColor: Colors.white,
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(30.r)
+                      ),
+                      fixedSize: Size(
+                          MediaQuery.of(context).size.width*0.3,
+                          56.h)
+                  ),
+                  onPressed: (){
+                    showModalBottomSheet(context: context,
+                        builder: (context)=>FilterBottomSheet());
+                  },
+                  child: Center(child:
+                  Row(
+                    children: [
+                      Icon(Icons.filter_alt,color: Colors.white,)
+                      ,   Text(" Filter",
+                        style: Styles.style16white,),
+                    ],
+                  ))),
+            ),
+          ],
+        )
+
             ],),
 
           ),

@@ -2,6 +2,7 @@ import 'package:conditional_builder_null_safety/conditional_builder_null_safety.
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:icon_icons/icon_icons.dart';
 import 'package:odcorange/core/constants/App_Colors.dart';
 import 'package:odcorange/core/constants/styles.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
@@ -92,6 +93,51 @@ return   Scaffold(
               }
             }, txt: "Register"),
             SizedBox(height: 20.h,),
+            SizedBox(height: 16),
+            Container(
+                padding: EdgeInsets.symmetric(
+                    horizontal: 20.w,vertical: 16.h
+                ),
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(34),
+                    border: Border.all(
+                      width: 1.0,color: Color(0xFF292A2E),
+                    )
+                ),
+                child: Center(child:
+                Row(mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Image.asset("assets/images/Google.png",fit: BoxFit.cover,height: 27.h,),
+                    Text("   Continue with google",style: Styles.style16white.copyWith(
+                      color: Color(0xFF292A2E),fontWeight: FontWeight.w400,
+                    ),),
+                  ],
+                ))
+            ),
+            SizedBox(height: 16.h),
+            Container(
+                padding: EdgeInsets.symmetric(
+                    horizontal: 20.w,vertical: 16.h
+                ),
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(34),
+                    border: Border.all(
+                      width: 1.0,color: Color(0xFF292A2E),
+                    )
+                ),
+                child: Center(child:
+                Row(mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    IconIcons.facebook(
+                        height: 32.h,width: 32.w
+                    ),
+                    Text("  Continue with google",style: Styles.style16white.copyWith(
+                      color: Color(0xFF292A2E),fontWeight: FontWeight.w400,
+                    ),),
+                  ],
+                ))
+            ),
+            SizedBox(height: 16.h),
             Row(
               children: [
                 Text("Already have an account.",

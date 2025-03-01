@@ -38,7 +38,9 @@ class WishListScreen extends StatelessWidget {
                       itemCount: context.read<WishListCubit>()
                           .wishlist.length,
                       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount
-                        (crossAxisCount: 2,mainAxisSpacing: 20,crossAxisSpacing: 20,),
+                        (crossAxisCount: 2,
+                        childAspectRatio: 13/16,
+                        mainAxisSpacing: 20,crossAxisSpacing: 20,),
                       itemBuilder: (context,index){
                         return CustomWishWidget(
                           productModel:context.read<WishListCubit>().

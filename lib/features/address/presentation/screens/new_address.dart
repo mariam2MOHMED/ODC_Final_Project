@@ -111,6 +111,7 @@ class _NewAddressState extends State<NewAddress> {
               Text("Move the pin on the map to find your location\n and select the delivery address",style: Styles.style14grey,),
               SizedBox(height: 16.h,),
               Text("Address Detail",style: Styles.style12,),
+              SizedBox(height: 10.h,),
               Container(
                 padding:EdgeInsets.all(16) ,
                 decoration:BoxDecoration(
@@ -122,7 +123,9 @@ class _NewAddressState extends State<NewAddress> {
                 child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text("Jl. Seturan indah No.9, Kledokan",
-                      style: Styles.style16,),
+                      style: Styles.style16.copyWith(
+                        color: Colors.black
+                      ),),
                     Icon(Icons.location_on_outlined)
                   ],
                 ),

@@ -25,14 +25,13 @@ class PaymentMethodScreen extends StatelessWidget {
                 subtitle: "**** **** 0582 4672"),
 
         Padding(
-          padding:  EdgeInsets.only(top: 130.h,
-            left: 20.0,right: 20.0
-          ),
+          padding:  EdgeInsets.only(left: 20.0,right: 20.0,top: 250),
           child: CustomBtn(onPressed: (){
             showModalBottomSheet(context: context,
                 builder: (context)=>AddPaymentSheet());
           }, txt: "Add New Payment"),
-        )
+        ),
+            SizedBox(height: 24.h,)
           ],
         ),
       ),

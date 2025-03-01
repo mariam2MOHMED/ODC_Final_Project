@@ -19,6 +19,7 @@ class AddPaymentSheet extends StatelessWidget {
               topRight: Radius.circular(16.r),topLeft: Radius.circular(16.r)
           )
       ),child: Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         SizedBox(height: 8.h,),
         Align(alignment: AlignmentDirectional.center,
@@ -39,7 +40,7 @@ class AddPaymentSheet extends StatelessWidget {
         SizedBox(height: 10.h,),
       Container(
         width: double.infinity,
-        margin: EdgeInsets.symmetric(horizontal: 20.0,vertical: 10),
+       // margin: EdgeInsets.symmetric(vertical: 10),
         padding: EdgeInsets.all(16.0),
         decoration: BoxDecoration(
             border: Border.all(
@@ -54,7 +55,7 @@ class AddPaymentSheet extends StatelessWidget {
                 color: Colors.black
             ),),
             Spacer(),
-            Icon(Icons.check_circle,size: 18.sp,color: AppColors.orange,)
+            Icon(Icons.check_circle,size: 24.sp,color: AppColors.orange,)
           ],
         ),
 

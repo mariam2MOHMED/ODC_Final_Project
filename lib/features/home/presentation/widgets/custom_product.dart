@@ -26,15 +26,16 @@ BuildContext c;
 
       },
       child: Container(
-        width: 159.w,
+        width: 155.w,
+        height: 221.h,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(16.r),
           color: Colors.white,
         ),
         child: Column(
           children: [
-            Image.network(productModel.image!,width:118.w ,
-              height:80.h ,fit: BoxFit.fill,),
+            Image.network(productModel.image!,width: 123.w,
+              height: 108.h,fit: BoxFit.fill,),
             SizedBox(height: 7.0,),
             Text(productModel.title!,maxLines: 2,
               overflow: TextOverflow.ellipsis,

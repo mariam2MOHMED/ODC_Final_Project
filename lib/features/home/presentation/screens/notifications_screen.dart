@@ -59,7 +59,10 @@ class NotificationsScreen extends StatelessWidget {
             Text("Yesterday",
               style: Styles.style14w500.copyWith(color: Color(0xFF7C7D81)),),
             Expanded(
-              child: ListView.separated(itemBuilder: (context,index){
+              child: ListView.separated(
+                  shrinkWrap: true,physics:
+              NeverScrollableScrollPhysics(),
+                  itemBuilder: (context,index){
                 return NotificationWidget(notificationModel: NotificationModel.notifcations[index]);
               }
                   , separatorBuilder: (context,index){

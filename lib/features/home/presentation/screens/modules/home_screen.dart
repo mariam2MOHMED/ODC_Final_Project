@@ -195,7 +195,7 @@ class HomeScreen extends StatelessWidget {
                         ],
                       ),
                       SizedBox(height: 16.h,),
-                      SizedBox(  height: 190.h,
+                      SizedBox(       height: 221.h,
                         child: ListView.separated(
                             scrollDirection: Axis.horizontal,
                             itemBuilder: (context,index){
@@ -300,14 +300,18 @@ class HomeScreen extends StatelessWidget {
                       SizedBox(height: 10.h,),
                       GridView.builder(
 
-                        shrinkWrap: true,physics:   NeverScrollableScrollPhysics(),
+                        shrinkWrap: true,
+
+                        physics:   NeverScrollableScrollPhysics(),
                         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                             crossAxisCount: 2,mainAxisSpacing: 20,
-
+childAspectRatio: 13/16,
                             crossAxisSpacing: 20),
                           itemBuilder: (context,index){
-                            return ConditionalBuilder(condition: state is !HomeProductLoading,
-                                builder: (context)=>CustomProduct(
+                            return ConditionalBuilder(
+                                condition: state is !HomeProductLoading,
+                                builder: (context)=>
+                                    CustomProduct(
                                   c: context,
                                   productModel: context.read<HomeCubit>().
                                   products[index],

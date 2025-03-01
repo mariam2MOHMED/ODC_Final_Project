@@ -36,7 +36,7 @@ class _ProductDetialsState extends State<ProductDetials> {
   builder: (context, state) {
     return
       Scaffold(
-        backgroundColor: Colors.white,
+          backgroundColor: Colors.white,
         appBar: AppBar(
           actions: [
             Container(
@@ -78,7 +78,8 @@ class _ProductDetialsState extends State<ProductDetials> {
         ),
         body:ConditionalBuilder(condition: context.read<HomeCubit>().
         productModel!=null,
-            builder: (BuildContext context)=> SingleChildScrollView(
+            builder: (BuildContext context)=>
+                SingleChildScrollView(
               child: Column(
                 children: [
                   SizedBox(height: 24.h,),
@@ -226,7 +227,7 @@ class _ProductDetialsState extends State<ProductDetials> {
                                 }, txt: "Checkout"))
                           ],
                         ),
-
+                        SizedBox(height: 20.h),
                       ],
                     ),
                   ),
