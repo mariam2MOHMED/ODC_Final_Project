@@ -35,7 +35,7 @@ class CustomCart extends StatelessWidget {
         child: Column(
           children: [
             Image.network(productModel.image!,width:118.w ,
-              height:85.h ,fit: BoxFit.fill,),
+              height:80.h ,fit: BoxFit.fill,),
             SizedBox(height: 7.0,),
             Text(productModel.title!,maxLines: 2,
               overflow: TextOverflow.ellipsis,

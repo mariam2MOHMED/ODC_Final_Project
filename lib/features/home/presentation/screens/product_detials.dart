@@ -24,7 +24,7 @@ class ProductDetials extends StatefulWidget {
 }
 
 class _ProductDetialsState extends State<ProductDetials> {
-  bool isSelected = false;
+  bool isSelected = false;bool isFav=false;
 
   @override
   Widget build(BuildContext context) {
@@ -62,10 +62,14 @@ class _ProductDetialsState extends State<ProductDetials> {
     }catch(e){
     print("the error at wishlist is ${e}");
     }
+    isFav=!isFav;
+    setState(() {
+
+    });
                   },
-                  child: Icon(Icons.favorite_border,
+                  child: Icon(isFav==true?Icons.favorite:Icons.favorite_border,
                     size: 25.sp,
-                    color: AppColors.black,),
+                    color:isFav?AppColors.red: AppColors.black,),
                 ),
               ),
             )
@@ -77,8 +81,11 @@ class _ProductDetialsState extends State<ProductDetials> {
               child: Column(
                 children: [
                   SizedBox(height: 24.h,),
-                  Text(context.read<HomeCubit>().productModel!.title!,
-                    textAlign: TextAlign.center, style: Styles.style24,
+                  Padding(
+                    padding:  EdgeInsets.symmetric(horizontal: 30.0),
+                    child: Text(context.read<HomeCubit>().productModel!.title!,
+                style: Styles.style24,
+                    ),
                   ),
                   SizedBox(height: 8.h,),
                   Text("\$${context.read<HomeCubit>().productModel!.price!}",

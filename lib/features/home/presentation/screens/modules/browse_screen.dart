@@ -82,7 +82,7 @@ class BrowseScreen extends StatelessWidget {
                           size: 25.sp),
                     ));
                   }),
-              SizedBox(height: 100.h,),
+              SizedBox(height: 150.h,),
 
 
               Align(

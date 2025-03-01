@@ -29,7 +29,7 @@ class CustomWishWidget extends StatelessWidget {
 
       },
       child: Container(
-        width: 159.w,
+        width: 16.w,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(16.r),
           color: Colors.white,
@@ -38,7 +38,7 @@ class CustomWishWidget extends StatelessWidget {
           children: [
             Image.network(productModel.image!,width:118.w ,
               height:85.h ,fit: BoxFit.fill,),
-            SizedBox(height: 7.0,),
+            SizedBox(height: 6.0,),
             Text(productModel.title!,maxLines: 2,
               overflow: TextOverflow.ellipsis,
               textAlign: TextAlign.center,

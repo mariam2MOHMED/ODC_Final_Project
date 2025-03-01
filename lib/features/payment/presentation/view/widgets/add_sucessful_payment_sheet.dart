@@ -10,7 +10,8 @@ class AddPaymentSheet extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 20.w),
-      height: MediaQuery.of(context).size.height*0.65,width: double.infinity,
+      height: MediaQuery.of(context).size.height*0.7,
+      width: double.infinity,
       decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.only(
@@ -35,8 +36,8 @@ class AddPaymentSheet extends StatelessWidget {
           ),
           SizedBox(height: 20.h,),
           Image.asset("assets/images/order.png",
-            fit: BoxFit.cover,width: 243.w,
-            height: 243.h,),
+            fit: BoxFit.fill,width: 200.w,
+            height: 200.h,),
           SizedBox(height: 24.h,),
           Text(
             'Order Successful!',
@@ -62,9 +63,7 @@ class AddPaymentSheet extends StatelessWidget {
             ),
           ),
           SizedBox(height: 24.h,),
-          CustomBtn(onPressed: (){
-
-          }, txt: "View Order")
+          CustomBtn(onPressed: (){}, txt: "View Order")
         ],
       ),
     );

@@ -12,7 +12,7 @@ class AddPaymentSheet extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 20.w),
-      height: MediaQuery.of(context).size.height*0.46,width: double.infinity,
+      height: MediaQuery.of(context).size.height*0.49,width: double.infinity,
       decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.only(

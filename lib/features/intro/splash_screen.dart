@@ -63,7 +63,7 @@ class _SplashScreenState extends State<SplashScreen> {
               SizedBox(height: 20.h,),
               Text("Zalada", style: Styles.style28,).animate().fadeIn(
                 duration: Duration(
-                  seconds: 1
+                  seconds: 3
                 )
               )
             ],
@@ -73,7 +73,7 @@ class _SplashScreenState extends State<SplashScreen> {
 
       onAnimationEnd: () => debugPrint("On Fade In End"),
       nextScreen:
-      token!=null?HomePage() :
+     // token!=null?HomePage() :
       OnBoardingScreen(),
     );
   }

@@ -5,7 +5,7 @@ import 'package:sqflite/sqflite.dart';
 class SQLHelper {
   static Future<Database> initDb() async {
     return sql.openDatabase(
-      'product3.db', // Database name
+      'product6.db', // Database name
       version: 3, // Version number
       onCreate: (Database database, int version) async {
         await createTable(database);
