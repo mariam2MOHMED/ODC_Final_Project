@@ -17,6 +17,8 @@ import 'package:odcorange/features/home/presentation/widgets/setting_widget.dart
 import 'package:odcorange/features/on_boarding/presentation/view/screens/on_boarding_screen.dart';
 import 'package:odcorange/features/payment/presentation/view/screen/payment_screen.dart';
 
+import '../../../../payment/presentation/view/screen/payment_method_screen.dart';
+
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
 
@@ -54,7 +56,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
       SettingModel(prefix: CircleAvatar(radius: 30.r,
         backgroundColor:  Color(0xFFF3F6FB),
         child: Icon(Icons.info_outline,
-          color: Colors.black,),     )         , title: "Payment Method",
+          color: Colors.black,),     )         ,
+          title: "Payment Method",
           suffix: Icon(Icons.arrow_forward_ios,
               color: Colors.black,size: 20.sp)),
     ];
@@ -87,7 +90,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
         ),
       )
           , title: "Payment Method",
-          suffix: Icon(Icons.arrow_forward_ios, color: AppColors.primary,)),
+          suffix: GestureDetector(
+              onTap: (){
+                //PaymentMethodScreen1
+                Navigator.push(context, MaterialPageRoute
+                  (builder: (context)=>PaymentMethodScreen1()));
+              },
+              child: Icon(Icons.arrow_forward_ios, color: AppColors.primary,))),
       SettingModel(prefix: GestureDetector(
         onTap: () {
 

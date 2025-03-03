@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:odcorange/core/constants/App_Colors.dart';
@@ -5,9 +6,15 @@ import 'package:odcorange/core/constants/styles.dart';
 import 'package:odcorange/core/widets/custom_btn.dart';
 import 'package:odcorange/features/payment/presentation/view/screen/add_new_card.dart';
 
-class AddPaymentSheet extends StatelessWidget {
+class AddPaymentSheet extends StatefulWidget {
   const AddPaymentSheet({super.key});
 
+  @override
+  State<AddPaymentSheet> createState() => _AddPaymentSheetState();
+}
+
+class _AddPaymentSheetState extends State<AddPaymentSheet> {
+  bool isSelected=false;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -38,27 +45,38 @@ class AddPaymentSheet extends StatelessWidget {
         SizedBox(height: 20.h,),
         Text("Add New Payment Method",style: Styles.style18,),
         SizedBox(height: 10.h,),
-      Container(
-        width: double.infinity,
-       // margin: EdgeInsets.symmetric(vertical: 10),
-        padding: EdgeInsets.all(16.0),
-        decoration: BoxDecoration(
-            border: Border.all(
-                width: 1.w,color: AppColors.midgrey
-            )
-        ),
-        child: Row(
-          children: [
-            Icon(Icons.payment_sharp,size: 20.sp,),
-            SizedBox(width: 16.w,),
-            Text("Credit or Debit Card",style: Styles.style14.copyWith(
-                color: Colors.black
-            ),),
-            Spacer(),
-            Icon(Icons.check_circle,size: 24.sp,color: AppColors.orange,)
-          ],
-        ),
+      GestureDetector(
+        onTap: (){
+          isSelected=true;
+          setState(() {
 
+          });
+        },
+        child: Container(
+          width: double.infinity,
+         // margin: EdgeInsets.symmetric(vertical: 10),
+          padding: EdgeInsets.all(16.0),
+          decoration: BoxDecoration(
+              border: Border.all(
+                  width: 2.w,color:isSelected?
+              AppColors.orange:AppColors.midgrey
+              )
+          ),
+          child: Row(
+            children: [
+              Icon(Icons.payment_sharp,size: 20.sp,),
+              SizedBox(width: 16.w,),
+              Text("Credit or Debit Card",style: Styles.style14.copyWith(
+                  color: Colors.black
+              ),),
+              Spacer(),
+
+              Icon(   isSelected?Icons.check_circle:null,
+                size: 24.sp,color: AppColors.orange,)
+       ],
+          ),
+
+        ),
       ),
         SizedBox(height: 10.h,),
       Container(
@@ -94,7 +112,7 @@ class AddPaymentSheet extends StatelessWidget {
             children: [
               Image.asset("assets/images/apple-pay.png",fit: BoxFit.scaleDown,),
               SizedBox(width: 16.w,),
-              Text("Paypal",style: Styles.style14.copyWith(
+              Text("ApplePay",style: Styles.style14.copyWith(
                   color: Colors.black
               ),),
 

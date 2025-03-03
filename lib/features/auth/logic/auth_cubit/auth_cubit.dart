@@ -63,9 +63,7 @@ class AuthCubit extends Cubit<AuthState> {
 
 
   }
-
-
-  void addUser(String email,String name,String phone) async {
+void addUser(String email,String name,String phone) async {
     Map<String, dynamic> userData = {
       "email": email,
       "username": name,

@@ -22,7 +22,7 @@ class PaymentMethod extends StatelessWidget {
       ),
       child: Row(
         children: [
-          Image.asset(image,fit: BoxFit.scaleDown,),
+          Image.asset(image,fit: BoxFit.scaleDown,height: 24.h,),
           SizedBox(width: 16.w,),
           Column(crossAxisAlignment: CrossAxisAlignment.start,
             children: [

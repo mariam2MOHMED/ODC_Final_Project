@@ -9,6 +9,7 @@ final class CartFailure extends CartState {
 
   CartFailure({required this.error});
 }
+final class CartIsDone extends CartState {}
 final class CartDeleteLoading extends CartState {}
 final class CartDeleteLoaded extends CartState {}
 final class CalculateTotalPrice extends CartState {}

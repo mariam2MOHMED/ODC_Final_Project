@@ -73,7 +73,7 @@ class _SplashScreenState extends State<SplashScreen> {
 
       onAnimationEnd: () => debugPrint("On Fade In End"),
       nextScreen:
-    // token!=null?HomePage() :
+    //token!=null?HomePage() :
       OnBoardingScreen(),
     );
   }

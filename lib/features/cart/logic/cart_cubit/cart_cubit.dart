@@ -9,16 +9,14 @@ part 'cart_state.dart';
 class CartCubit extends Cubit<CartState> {
   CartCubit() : super(CartInitial());
   double totalPrice=0;
-  int cntOfItem=1;
-  int?quatityItem=1;
+
+
   List<ProductCartModel>carts=[];
   ProductCartModel? cartModel;
-  // Future<void>  initQuantity()async{
-  //   for(var car in carts){
-  //     quatityItem=   car.quantity;
-  //   }
-  //   emit(CartInitQuantity());
-  // }
+  Future<void> isDone(int index)async{
+  carts[index].isCart=true;
+  emit(CartIsDone());
+}
   Future<void>  getCart()async{
 emit(CartLoading());
 try{
@@ -49,8 +47,7 @@ try{
   }
   void increaseQuantity(int index) {
     if (index >= 0 && index < carts.length) {
-     cntOfItem=carts[index].quantity!;
-     cntOfItem++;
+
       carts[index].quantity = (carts[index].quantity ?? 0) + 1;
       emit(AddItem()); // Notify UI about the update
     }
@@ -60,8 +57,7 @@ try{
   void decreaseQuantity(int index) {
     if (index >= 0 && index < carts.length &&
         (carts[index].quantity ?? 0) > 1) {
-       cntOfItem=carts[index].quantity!;
-      cntOfItem--;
+
       carts[index].quantity = (carts[index].quantity ?? 1) - 1;
       emit(MinusItem());
     }    calculateTotalPrice();

@@ -14,26 +14,25 @@ class PaymentMethodScreen extends StatelessWidget {
         title: Text("Payment Method"),
         centerTitle: true,
       ),
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            PaymentMethod(title: "MasterCard", image: "assets/images/mastercard.png",
-                subtitle: "**** **** 0783 7873"),
-            PaymentMethod(title: "Paypal", image: "assets/images/paypal.png",
-                subtitle: "**** **** 0582 4672"),
-            PaymentMethod(title: "Apple Pay", image: "assets/images/apple-pay.png",
-                subtitle: "**** **** 0582 4672"),
+      body: Column(
+        children: [
+          PaymentMethod(title: "MasterCard", image: "assets/images/mastercard.png",
+              subtitle: "**** **** 0783 7873"),
+          PaymentMethod(title: "Paypal", image: "assets/images/paypal.png",
+              subtitle: "**** **** 0582 4672"),
+          PaymentMethod(title: "Apple Pay", image: "assets/images/apple-pay.png",
+              subtitle: "**** **** 0582 4672"),
+      Spacer(),
 
-        Padding(
-          padding:  EdgeInsets.only(left: 20.0,right: 20.0,top: 250),
-          child: CustomBtn(onPressed: (){
-            showModalBottomSheet(context: context,
-                builder: (context)=>AddPaymentSheet());
-          }, txt: "Add New Payment"),
-        ),
-            SizedBox(height: 24.h,)
-          ],
-        ),
+      Padding(
+        padding:  EdgeInsets.symmetric(horizontal: 20.0),
+        child: CustomBtn(onPressed: (){
+          showModalBottomSheet(context: context,
+              builder: (context)=>AddPaymentSheet());
+        }, txt: "Add New Payment"),
+      ),
+          SizedBox(height: 24.h,)
+        ],
       ),
     );
   }

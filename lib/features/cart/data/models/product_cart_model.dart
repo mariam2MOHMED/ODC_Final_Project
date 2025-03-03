@@ -5,6 +5,7 @@ class ProductCartModel {
   String? description;
   String? image;
   int? quantity;
+  bool? isCart;
 
   ProductCartModel(
       {this.id,
@@ -12,7 +13,8 @@ class ProductCartModel {
         this.price,
         this.description,
         this.image,
-        this.quantity=1
+        this.quantity=1,
+        this.isCart=false
      });
 
   ProductCartModel.fromJson(Map<String, dynamic> json) {
@@ -22,6 +24,7 @@ class ProductCartModel {
     description = json['description'];
     quantity = json['quantity'];
     image = json['image'];
+    isCart=json["isCart"];
 
   }
 
@@ -33,7 +36,7 @@ class ProductCartModel {
     data['description'] = this.description;
     data['category'] = this.quantity;
     data['image'] = this.image;
-
+data["isCart"]=this.isCart;
     return data;
   }
 }

@@ -39,7 +39,7 @@ class WishListScreen extends StatelessWidget {
                           .wishlist.length,
                       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount
                         (crossAxisCount: 2,
-                        childAspectRatio: 13/16,
+                        childAspectRatio: 12/16,
                         mainAxisSpacing: 20,crossAxisSpacing: 20,),
                       itemBuilder: (context,index){
                         return CustomWishWidget(

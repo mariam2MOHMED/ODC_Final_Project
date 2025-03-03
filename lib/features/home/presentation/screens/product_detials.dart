@@ -160,14 +160,15 @@ class _ProductDetialsState extends State<ProductDetials> {
                           ],
                         ),
                         SizedBox(height: 16.h,),
-                        SizedBox(  height: 190.h,
+                        SizedBox(  height: 200.h,
                           child: ListView.separated(
                               scrollDirection: Axis.horizontal,
                               itemBuilder: (context,index){
                                 return ConditionalBuilder(condition: state is !HomeRelatedProductLoading,
                                     builder: (context)=>CustomProduct(
                                       c: context,
-                                      productModel: context.read<HomeCubit>().
+                                      productModel:
+                                      context.read<HomeCubit>().
                                       relatedProducts[index],
                                     ),
                                     fallback: (context)=>Center(
@@ -199,6 +200,7 @@ class _ProductDetialsState extends State<ProductDetials> {
                                 padding: const EdgeInsets.all(14.0),
                                 child: GestureDetector(
                                   onTap: ()async{
+
 
                                     try{
                                       await SQLHelper.
